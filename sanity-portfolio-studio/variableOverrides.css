@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+:root {
+  --brand-primary: #b6ebdb;
+  --brand-secondary: #e9e5e0;
+  --font-family-base: 'Fjalla One';
+  --main-navigation-color: var(--brand-primary);
+}

@@ -1,7 +1,10 @@
+import { FaBeer } from 'react-icons/fa';
+
 export default {
   name: 'project',
   title: 'Project',
   type: 'document',
+  icon: FaBeer,
   // types can be found in sanity docs
   fields: [
     { name: 'title', title: 'Title', type: 'string' },
@@ -32,6 +35,11 @@ export default {
       title: 'Author',
       type: 'reference',
       to: { type: 'author' }
+    },
+    {
+      name: 'dateCreated',
+      title: 'Creation Date',
+      type: 'datetime'
     }
   ],
 
@@ -41,13 +49,17 @@ export default {
       title: 'title',
       author: 'author.name',
       // image references the 'image' name above
-      media: 'image'
+      media: 'image',
+      date: 'dateCreated'
     },
     prepare(selection) {
-      const { author } = selection;
+      const { author, date } = selection;
       return {
         ...selection,
-        subtitle: author && `${author} is a genius`
+        // subtitle: author && `${author} is a genius`,
+        subtitle: date
+          ? `Date Created: ${date.split('-')[1]}-${date.split('-')[0]}`
+          : author && `${author} is a genius`
       };
     }
   }
