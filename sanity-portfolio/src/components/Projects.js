@@ -3,7 +3,7 @@ import { jsx } from "theme-ui"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import Image from "gatsby-image"
 
-const Projects = ({ data }) => {
+const Projects = ({ projects }) => {
   // could also do:
   //   const data = useStaticQuery(graphql`
   //     query ProjectQuery {
@@ -42,7 +42,7 @@ const Projects = ({ data }) => {
         }}
       >
         {/* below we are renaming "node" to "project" */}
-        {data.allSanityProject.edges.map(({ node: project }) => (
+        {projects.edges.map(({ node: project }) => (
           <li
             key={project.slug.current}
             sx={{

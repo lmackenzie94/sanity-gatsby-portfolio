@@ -5,23 +5,22 @@ import React from "react"
 import Layout from "../components/Layout"
 import SEO from "../components/seo"
 import { Link, graphql } from "gatsby"
-import Image from "gatsby-image"
 import Projects from "../components/Projects"
 import Hero from "../components/Hero"
-import Blog from "../components/Blog"
+import BlogPostPreview from "../components/BlogPostPreview"
 
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
     <Hero />
-    <Projects data={data} />
-    <Blog />
+    <Projects projects={data.projects} />
+    <BlogPostPreview posts={data.posts} />
   </Layout>
 )
 
 export const query = graphql`
   {
-    allSanityProject {
+    projects: allSanityProject {
       edges {
         node {
           title
@@ -35,6 +34,20 @@ export const query = graphql`
                 ...GatsbySanityImageFluid
               }
             }
+          }
+        }
+      }
+    }
+    posts: allSanityPost {
+      edges {
+        node {
+          title
+          published
+          author {
+            name
+          }
+          slug {
+            current
           }
         }
       }

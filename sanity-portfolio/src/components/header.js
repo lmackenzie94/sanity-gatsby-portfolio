@@ -2,6 +2,8 @@
 import { jsx } from "theme-ui"
 import { Link } from "gatsby"
 
+const navItems = ["about", "work", "blog"]
+
 const Header = () => (
   <header
     sx={{
@@ -27,7 +29,7 @@ const Header = () => (
             textDecoration: `none`,
           }}
         >
-          {/* {siteTitle} */}luke.
+          luke.
         </Link>
       </h1>
       <nav>
@@ -39,15 +41,11 @@ const Header = () => (
             "& a": { textDecoration: `none`, color: `text` },
           }}
         >
-          <li>
-            <a href="/">about</a>
-          </li>
-          <li>
-            <a href="/">work</a>
-          </li>
-          <li>
-            <a href="/">blog</a>
-          </li>
+          {navItems.map((item, idx) => (
+            <li key={idx}>
+              <Link to={item}>{item}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>

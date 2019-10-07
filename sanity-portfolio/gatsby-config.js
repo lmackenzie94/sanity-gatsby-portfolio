@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `luke`,
@@ -12,12 +16,12 @@ module.exports = {
       resolve: `gatsby-source-sanity`,
       options: {
         // find in sanity.json of studio codebase
-        projectId: `uh140dpg`,
-        dataset: `production`,
+        projectId: process.env.SANITY_PROJECT_ID,
+        dataset: process.env.SANITY_DATASET,
+        token: process.env.SANITY_TOKEN,
         // the below enabled watch mode (get token from manage.sanity.io > Settings > API > create new Read token)
         overlayDrafts: true,
         watchMode: true,
-        token: `skr7iTfEQNxZWYQcgTXVMofwabLlWnyI3h5oGSgNW3BoJWCQfW9t7tA0Bpgk0oVD8aFlJVgLzX6JyZnTJKUlreILT9vAYMtD0SshRoPgkNPatvAuHtUkyvb5ZzNYG2G0tIPgTRAwZkSva5dkWN6AdML7lNvEGMKAlomwzQ4BRp4bESY5wuu0`,
       },
     },
     {

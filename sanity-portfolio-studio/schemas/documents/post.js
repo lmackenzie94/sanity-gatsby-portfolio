@@ -1,7 +1,10 @@
+import { FaPencilAlt } from 'react-icons/fa';
+
 export default {
   name: 'post',
   title: 'Post',
   type: 'document',
+  icon: FaPencilAlt,
   fields: [
     {
       name: 'title',
@@ -21,31 +24,42 @@ export default {
       name: 'author',
       title: 'Author',
       type: 'reference',
-      to: {type: 'author'}
+      to: { type: 'author' }
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
+      name: 'image',
+      title: 'Image',
       type: 'image',
       options: {
         hotspot: true
       }
     },
+    // {
+    //   name: 'categories',
+    //   title: 'Categories',
+    //   type: 'array',
+    //   of: [{type: 'reference', to: {type: 'category'}}]
+    // },
     {
-      name: 'categories',
-      title: 'Categories',
-      type: 'array',
-      of: [{type: 'reference', to: {type: 'category'}}]
-    },
-    {
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime'
+      name: 'published',
+      title: 'Published',
+      type: 'datetime',
+      options: {
+        dateFormat: 'MMM D, YYYY'
+      }
     },
     {
       name: 'body',
       title: 'Body',
-      type: 'blockContent'
+      type: 'bodyPortableText'
+    },
+    {
+      name: 'code',
+      title: 'Code Block',
+      type: 'code',
+      options: {
+        language: 'js'
+      }
     }
   ],
 
@@ -53,13 +67,13 @@ export default {
     select: {
       title: 'title',
       author: 'author.name',
-      media: 'mainImage'
+      media: 'image'
     },
     prepare(selection) {
-      const {author} = selection
+      const { author } = selection;
       return Object.assign({}, selection, {
         subtitle: author && `by ${author}`
-      })
+      });
     }
   }
-}
+};

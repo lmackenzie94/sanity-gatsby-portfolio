@@ -4,8 +4,8 @@ import Layout from "../components/Layout"
 import Image from "gatsby-image"
 
 export const query = graphql`
-  query($slug: String) {
-    sanityProject(slug: { current: { eq: $slug } }) {
+  query ProjectTemplateQuery($slug: String) {
+    project: sanityProject(slug: { current: { eq: $slug } }) {
       title
       description
       image {
@@ -21,12 +21,9 @@ export const query = graphql`
 
 export default ({ data }) => (
   <Layout>
-    <Image
-      fluid={data.sanityProject.image.asset.fluid}
-      alt={data.sanityProject.title}
-    />
-    <h1>{data.sanityProject.title}</h1>
-    <p>{data.sanityProject.description}</p>
+    <Image fluid={data.project.image.asset.fluid} alt={data.project.title} />
+    <h1>{data.project.title}</h1>
+    <p>{data.project.description}</p>
     <Link to="/">Back to home</Link>
   </Layout>
 )
