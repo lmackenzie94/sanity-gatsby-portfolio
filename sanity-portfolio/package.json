@@ -28,7 +28,7 @@
     "react-spring": "^8.0.27",
     "react-three-fiber": "^3.0.0",
     "theme-ui": "^0.2.43",
-    "three": "^0.109.0"
+    "three": "^0.125.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
